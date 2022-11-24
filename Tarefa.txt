@@ -1,0 +1,10 @@
+## TAREFA ##
+        # fazer menu de restart "Press any key to restart" FEiTO
+
+        ## mostrar o score atingido  e o death_count FEITO
+
+        # quando reiniciar, resetar o game_speed e score FEITO
+
+        # metodo reutilizavel para desenhar os textos FEITO
+
+        # refatorar FEITO
