@@ -1,10 +1,6 @@
-## TAREFA ##
-        # fazer menu de restart "Press any key to restart" FEiTO
+## TAREFA FINAL ## power ups commit
+        # implementar o hammer  (shield só passa pelo obstaculo e o hammer remove)
 
-        ## mostrar o score atingido  e o death_count FEITO
+        # mais um power up e comportamento de minha escolha
 
-        # quando reiniciar, resetar o game_speed e score FEITO
-
-        # metodo reutilizavel para desenhar os textos FEITO
-
-        # refatorar FEITO
+        # mais algum incremento
