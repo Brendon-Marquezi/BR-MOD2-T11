@@ -1,9 +1,10 @@
 import pygame
 
-from dino_runner.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, DEFAULT_TYPE
+from dino_runner.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, DEFAULT_TYPE, LOGO, MUSIC_MENU, MUSIC_GAME, SOUND_POINT
 from dino_runner.components.dinosaur import Dinosaur
 from dino_runner.components.obstacles.obstacle_manager import ObstacleManager
 from dino_runner.components.power_ups.power_up_manager import PowerUpManager
+from dino_runner.utils.music_and_sound import Music, Sound
 
 FONT_STYLE = "freesansbold.ttf"
 
@@ -19,6 +20,7 @@ class Game:
         self.running = False
         self.game_speed = 20
         self.score = 0
+        self.life = 2
         self.max_score = 0
         self.death_count = 0
         self.x_pos_bg = 0
@@ -29,6 +31,8 @@ class Game:
 
     def execute(self):
         self.running = True
+        pygame.mixer.music.stop()
+        Music(MUSIC_MENU)
         while self.running:
             if not self.playing:
                 self.show_menu()
@@ -39,6 +43,8 @@ class Game:
     def run(self):
         # Game loop: events - update - draw
         self.playing = True
+        pygame.mixer.music.stop()
+        Music(MUSIC_GAME)
         self.obstacle_manager.reset_obstacles()
         self.power_up_manager.reset_power_ups()
         while self.playing:
@@ -63,6 +69,9 @@ class Game:
         self.score += 1
         if self.score % 100 == 0:
             self.game_speed += 2
+
+        if self.score % 1000 == 0:
+            Sound(SOUND_POINT)
 
     def update_max_score(self):
         if self.score > self.max_score:
@@ -126,7 +135,8 @@ class Game:
         half_screen_width = SCREEN_WIDTH // 2
 
         if self.death_count == 0:
-            self.write("Press any key to start", 22, half_screen_width, half_screen_height)
+            self.screen.blit(LOGO, (260, 150))
+            self.write("Press any key to start", 22, half_screen_width, half_screen_height + 190)
         else:
             self.screen.blit(ICON, (half_screen_width - 50, half_screen_height - 175))
             self.write("Press any key to restart", 35, half_screen_width, half_screen_height)

@@ -1,5 +1,5 @@
 ## TAREFA FINAL ## power ups commit
-        # implementar o hammer  (shield só passa pelo obstaculo e o hammer remove)
+        # implementar o hammer  (shield só passa pelo obstaculo e o hammer remove) FEITO
 
         # mais um power up e comportamento de minha escolha
 

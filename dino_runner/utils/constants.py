@@ -9,7 +9,9 @@ FPS = 30
 IMG_DIR = os.path.join(os.path.dirname(__file__), "..", "assets")
 
 # Assets Constants
-ICON = pygame.image.load(os.path.join(IMG_DIR, "DinoWallpaper.png"))
+LOGO = pygame.image.load(os.path.join(IMG_DIR, "DinoRun.png"))
+
+ICON = pygame.image.load(os.path.join(IMG_DIR, "DIno/DinoDead.png"))
 
 RUNNING = [
     pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoRun1.png")),
@@ -69,5 +71,15 @@ BG = pygame.image.load(os.path.join(IMG_DIR, 'Other/Track.png'))
 
 HEART = pygame.image.load(os.path.join(IMG_DIR, 'Other/SmallHeart.png'))
 
+MUSIC_GAME = os.path.join(IMG_DIR, 'Music/MusicGame.mp3')
+MUSIC_MENU = os.path.join(IMG_DIR, 'Music/MusicMenu.wav')
+SOUND_CATCH = os.path.join(IMG_DIR, 'Music/SoundCatch.wav')
+SOUND_END = os.path.join(IMG_DIR, 'Music/SoundEnd.wav')
+SOUND_DEATH = os.path.join(IMG_DIR, 'Music/SoundDeath.wav')
+SOUND_POINT = os.path.join(IMG_DIR, 'Music/SoundPoint.wav')
+SOUND_JUMP = os.path.join(IMG_DIR, 'Music/SoundJump.wav')
+SOUND_IMPACT = os.path.join(IMG_DIR, 'Music/SoundImpact.wav')
+
 DEFAULT_TYPE = "default"
 SHIELD_TYPE = "shield"
+HAMMER_TYPE = "hammer"

@@ -1,16 +1,17 @@
 import pygame
 from pygame.sprite import Sprite
 #Separar blocos de imports com linha em branco
-from dino_runner.utils.constants import RUNNING, JUMPING, DUCKING, DEFAULT_TYPE, SHIELD_TYPE, DUCKING_SHIELD, JUMPING_SHIELD, RUNNING_SHIELD
+from dino_runner.utils.constants import RUNNING, JUMPING, DUCKING, DEFAULT_TYPE, SHIELD_TYPE, HAMMER_TYPE, DUCKING_SHIELD, DUCKING_HAMMER, JUMPING_SHIELD, JUMPING_HAMMER, RUNNING_SHIELD, RUNNING_HAMMER, SOUND_JUMP
+from dino_runner.utils.music_and_sound import Sound
 
 X_POS = 80
 Y_POS = 310
 Y_POS_DUCK = Y_POS + 35
 JUMP_VEL = 8.5
 
-DUCK_IMG = {DEFAULT_TYPE: DUCKING, SHIELD_TYPE: DUCKING_SHIELD}
-JUMP_IMG = {DEFAULT_TYPE: JUMPING, SHIELD_TYPE: JUMPING_SHIELD}
-RUN_IMG = {DEFAULT_TYPE: RUNNING, SHIELD_TYPE: RUNNING_SHIELD}
+DUCK_IMG = {DEFAULT_TYPE: DUCKING, SHIELD_TYPE: DUCKING_SHIELD, HAMMER_TYPE: DUCKING_HAMMER}
+JUMP_IMG = {DEFAULT_TYPE: JUMPING, SHIELD_TYPE: JUMPING_SHIELD, HAMMER_TYPE: JUMPING_HAMMER}
+RUN_IMG = {DEFAULT_TYPE: RUNNING, SHIELD_TYPE: RUNNING_SHIELD, HAMMER_TYPE: RUNNING_HAMMER}
 
 # 2 linhas em branco antes de cada classe
 class Dinosaur(Sprite):
@@ -41,11 +42,12 @@ class Dinosaur(Sprite):
         elif self.dino_duck:
             self.duck()
 
-        if user_input[pygame.K_UP] and not self.dino_jump and not self.dino_duck:
+        if not self.dino_duck and not self.dino_jump and user_input[pygame.K_UP]:
+            Sound(SOUND_JUMP)
             self.dino_jump = True
             self.dino_run = False
             self.dino_duck = False
-        elif user_input[pygame.K_DOWN] and not self.dino_jump and not self.dino_duck:
+        elif not self.dino_jump and not self.dino_duck and user_input[pygame.K_DOWN]:
             self.dino_duck =  True
             self.dino_run = False
             self.dino_jump = False
@@ -69,7 +71,7 @@ class Dinosaur(Sprite):
         if self.dino_jump:
             self.dino_rect.y -= self.jump_vel * 4
             self.jump_vel -= 0.8
-        
+
         if self.jump_vel < -JUMP_VEL:
             self.dino_rect.y = Y_POS
             self.dino_jump = False
